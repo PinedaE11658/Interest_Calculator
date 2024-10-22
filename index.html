@@ -1,0 +1,55 @@
+<!--By Eric Pineda-->
+<!DOCTYPE html>
+<html lang="eng" class="h-full">
+<head> 
+    <meta charset="UTF-8">
+    <title> Interest Calculator</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    </script>
+</head>
+
+<body class="font-mono h-full grid place-items-center bg-green-100">
+<div id="app" class="border-4 border rounded-lg p-5 bg-white">
+    <h1 class="mb-4 text-3xl font-extrabold">Interest Calculator</h1>
+<div class ="input">
+    <label for="Principal" class="font-bold"> Principal:</label>
+    <input for="number" v-model ="principal" id="principal" class="w-full bg-gray-50 border mb-4" />
+</div>
+<div class ="input">
+    <label for="rate" class="font-bold"> rate (%):</label>
+    <input for="number" v-model="rate" id="rate" class="w-full bg-gray-50 border mb-4" />
+</div>
+<div class ="input">
+    <label for="time" class="font-bold"> time (years):</label>
+    <input for="number" v-model="time" id="time" class="w-full bg-gray-50 border mb-4" />
+</div>
+<h1 class="mb-4 p-3">Interest: {{ interest }}</h1>
+<button @click="interestCalculation" class="bg-gray-100 border p-1 place-items-center hover:bg-green-100">Calculate</button>
+
+
+</body>
+
+<script>
+    let app= {
+        data() {
+     return {
+        principal: null,
+        rate: null,
+        time: null,
+        interest: null
+     };
+    },
+    methods: {
+        interestCalculation () {
+            const principal = parseFloat(this.principal);
+            const rate = parseFloat(this.rate) / 100;
+            const time = parseFloat(this.time);
+            this.interest = principal * rate * time;
+        }
+    }
+    };
+Vue.createApp(app).mount('#app');
+</script>
+</body>
+</html>
